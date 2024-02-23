@@ -19,12 +19,10 @@ public function main() returns error?
         {
             int goalFor = check int:fromString(splitBySpace[7]);
             int goalAgainst = check int:fromString(splitBySpace[9]);
-            smallest = goalFor - goalAgainst;
+
+            // Refactor
+            smallest = int:abs(goalFor - goalAgainst);
             team = splitBySpace[2];
-            if ((goalFor - goalAgainst) < 0) 
-            {
-                smallest = smallest * (-1);
-            }
 
             if (smallestFA > smallest) 
             {
@@ -36,5 +34,5 @@ public function main() returns error?
         
     }
 
-    io:print("The team with the smallest difference is: ", teamFA, " with a difference of: ", smallestFA);
+    io:print("The team with the smallest difference is: ", teamFA, "\n\t\t\twith a difference of: ", smallestFA);
 }

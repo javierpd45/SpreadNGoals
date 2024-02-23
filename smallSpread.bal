@@ -13,29 +13,18 @@ public function main() returns error?
 
     foreach string lines in splitByLines 
     {
-        string[] splitBySpace = regex:split(lines, "\\s+");
+        // Refactor
+        string lines2 = lines;
+        lines2 = regex:replaceAll(lines2, "\\*", "");
+
+        string[] splitBySpace = regex:split(lines2, "\\s+");
         if (splitBySpace.length() >= 3 && (i >= 1 && i <= 31)) 
         {
             int day = check int:fromString(splitBySpace[1]);
-            string maxTempString = "";
-            foreach string item in splitBySpace[2] 
-            {
-                if (item != "*") 
-                {
-                    maxTempString = maxTempString + item;                    
-                }                
-            }
-            float maxTemp = check float:fromString(maxTempString);
-
-            string minTempString = "";
-            foreach string item in splitBySpace[3] 
-            {
-                if (item != "*") 
-                {
-                    minTempString = minTempString + item;                    
-                }                
-            }
-            float minTemp = check float:fromString(minTempString);
+            
+            float maxTemp = check float:fromString(splitBySpace[2]);
+            
+            float minTemp = check float:fromString(splitBySpace[3]);
 
             float tempSpread = maxTemp - minTemp;
 
